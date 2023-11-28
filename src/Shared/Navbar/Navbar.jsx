@@ -8,9 +8,9 @@ const Navbar = () => {
   // console.log(user);
   return (
     <div>
-      <div className="navbar bg-base-200">
+      <div className="navbar bg-base-200 py-4">
         <div className="flex-1">
-          <Link className="text-2xl font-bold">Task Hub</Link>
+          <Link className=" text-3xl lg:text-4xl font-bold">Task Hub</Link>
         </div>
         <div className="flex-none gap-2">
           <div className="form-control">
