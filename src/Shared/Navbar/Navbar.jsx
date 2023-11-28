@@ -5,7 +5,7 @@ import { MdAddTask } from "react-icons/md";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
-  // console.log(user);
+  console.log(user?.photoURL);
   return (
     <div>
       <div className="navbar bg-base-200 py-4">
@@ -29,8 +29,9 @@ const Navbar = () => {
               >
                 <div className="w-10 rounded-full">
                   <img
-                    alt="Tailwind CSS Navbar component"
-                    src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                    alt={user?.displayName}
+                    src={user?.photoURL}
+                    title={user?.displayName}
                   />
                 </div>
               </div>
@@ -51,7 +52,7 @@ const Navbar = () => {
             </div>
           ) : (
             <button className="btn btn-primary px-6">
-              <Link>Login</Link>
+              <Link to={"/login"}>Login</Link>
             </button>
           )}
         </div>
