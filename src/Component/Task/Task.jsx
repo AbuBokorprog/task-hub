@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { MdDelete } from "react-icons/md";
+import { FiEdit } from "react-icons/fi";
 
 const Task = (props) => {
   const { id, title, description, priority } = props.task;
@@ -37,7 +38,7 @@ const Task = (props) => {
                 name=""
                 id=""
                 checked={isChecked}
-                className="checkbox checkbox-error"
+                className="checkbox checkbox-primary"
                 onChange={handleCheckboxChange}
               />
             </form>
@@ -69,9 +70,14 @@ const Task = (props) => {
           </p>
         </div>
         <div className="flex gap-2 items-center">
-          <div className="btn">edit</div>
-          <div className="btn" onClick={() => handleDeleteClick(id)}>
-            delete
+          <div className="btn text-red-500">
+            <FiEdit className="" />
+          </div>
+          <div
+            className="btn text-red-500"
+            onClick={() => handleDeleteClick(id)}
+          >
+            <MdDelete />
           </div>
         </div>
       </div>

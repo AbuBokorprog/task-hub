@@ -7,6 +7,8 @@ import Task from "../../Component/Task/Task";
 
 const Home = () => {
   const existTask = JSON.parse(localStorage.getItem("task")) || [];
+  const [priorityFilter, setPriorityFilter] = useState(null);
+  console.log(priorityFilter);
   const [task, setTask] = useState(existTask);
   const {
     register,
@@ -22,15 +24,22 @@ const Home = () => {
     localStorage.setItem("task", JSON.stringify([newTask, ...task]));
     reset();
   };
+  const filteredTasks = priorityFilter
+    ? task.filter((t) => t.priority === priorityFilter)
+    : task;
   return (
     <div className="my-10 px-1 pb-96 lg:pb-72">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl lg:text-3xl font-semibold">My Day</h2>
         <div className="">
-          <select className="bg-base-100">
-            <option defaultValue>Filter</option>
-            <option value="Complete">Complete</option>
-            <option value="Priority">Priority</option>
+          <select
+            className="bg-base-100"
+            onChange={(e) => setPriorityFilter(e.target.value)}
+          >
+            <option value="">Filter</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
           </select>
         </div>
         <Modal title="Add your task" button="Add task">
@@ -97,7 +106,7 @@ const Home = () => {
           <h2 className="text-2xl font-medium">All Task</h2>
         )}
         <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-4 mx-auto">
-          {existTask?.map((t) => (
+          {filteredTasks.map((t) => (
             <Task key={t.id} task={t}></Task>
           ))}
         </div>
