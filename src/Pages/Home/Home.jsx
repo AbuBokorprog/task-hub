@@ -7,9 +7,7 @@ import Task from "../../Component/Task/Task";
 
 const Home = () => {
   const existTask = JSON.parse(localStorage.getItem("task")) || [];
-  // console.log(existTask.length);
   const [task, setTask] = useState(existTask);
-  // console.log("allTask:", task);
   const {
     register,
     handleSubmit,
