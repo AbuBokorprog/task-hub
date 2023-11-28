@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaFilter } from "react-icons/fa";
 import { FaPlusCircle } from "react-icons/fa";
 import Modal from "../../Component/Modal/Modal";
 import { useForm } from "react-hook-form";
+import Task from "../../Component/Task/Task";
 
 const Home = () => {
+  const existTask = JSON.parse(localStorage.getItem("task")) || [];
+  // console.log(existTask.length);
+  const [task, setTask] = useState(existTask);
+  // console.log("allTask:", task);
   const {
     register,
     handleSubmit,
@@ -14,7 +19,9 @@ const Home = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    const newTask = { id: Date.now(), ...data };
+    setTask([...task, newTask]);
+    localStorage.setItem("task", JSON.stringify([...task, newTask]));
     reset();
   };
   return (
@@ -82,6 +89,16 @@ const Home = () => {
             </div>
           </form>
         </Modal>
+      </div>
+      <div className="mt-10">
+        {existTask.length > 0 && (
+          <h2 className="text-2xl font-medium">All Task</h2>
+        )}
+        <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-4 mx-auto">
+          {existTask?.map((t) => (
+            <Task key={t.id} task={t}></Task>
+          ))}
+        </div>
       </div>
     </div>
   );
