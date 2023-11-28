@@ -3,19 +3,23 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Main from "./layout/Main.jsx";
+import AuthProvider from "./Provider/AuthProvider/AuthProvider.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
     errorElement: <p>error</p>,
+    children: [{}],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <div>
-      <RouterProvider router={router} />
-    </div>
+    <AuthProvider>
+      <div className="container mx-auto lg:px-20">
+        <RouterProvider router={router} />
+      </div>
+    </AuthProvider>
   </React.StrictMode>
 );
