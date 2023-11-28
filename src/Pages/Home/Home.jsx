@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { FaFilter } from "react-icons/fa";
-import { FaPlusCircle } from "react-icons/fa";
 import Modal from "../../Component/Modal/Modal";
 import { useForm } from "react-hook-form";
 import Task from "../../Component/Task/Task";
@@ -8,7 +6,6 @@ import Task from "../../Component/Task/Task";
 const Home = () => {
   const existTask = JSON.parse(localStorage.getItem("task")) || [];
   const [priorityFilter, setPriorityFilter] = useState(null);
-  console.log(priorityFilter);
   const [task, setTask] = useState(existTask);
   const {
     register,
@@ -51,7 +48,7 @@ const Home = () => {
                 </span>
               </label>
               <input
-                {...register("title", { required: true })}
+                {...register("title", { required: true, maxLength: 25 })}
                 placeholder="Type title"
                 className="input input-bordered input-secondary w-full"
               />
@@ -60,19 +57,24 @@ const Home = () => {
                   <small>Title name is required</small>
                 </p>
               )}
+              {errors.title?.type === "maxLength" && (
+                <p role="alert" className="text-red-500">
+                  <small>Title name must be maximum 25</small>
+                </p>
+              )}
             </div>
             <div className="form-control w-full my-4">
               <label className="label">
                 <span className="label-text">Description</span>
               </label>
               <textarea
-                {...register("description", { maxLength: 100 })}
+                {...register("description", { maxLength: 200 })}
                 placeholder="Type here"
                 className="input input-bordered input-secondary w-full"
               />
               {errors.description?.type === "maxLength" && (
                 <p role="alert" className="text-red-500">
-                  <small>Description must be maximum 100 character</small>
+                  <small>Description must be maximum 200 character</small>
                 </p>
               )}
             </div>

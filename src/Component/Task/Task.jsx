@@ -31,14 +31,14 @@ const Task = (props) => {
     <div className={`my-4 ${isChecked ? "checked-task" : ""}`}>
       <div className="card shadow-xl bg-base-100 py-5 px-4 rounded-xl">
         <div className="">
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
             <form className="form-control">
               <input
                 type="checkbox"
                 name=""
                 id=""
                 checked={isChecked}
-                className="checkbox checkbox-primary"
+                className="checkbox checkbox-primary rounded-xl"
                 onChange={handleCheckboxChange}
               />
             </form>
@@ -62,11 +62,11 @@ const Task = (props) => {
             </div>
           </div>
           <p
-            className={`h-28 mt-4 ${
+            className={`h-32 mt-4 ${
               isChecked ? "text-red-500 line-through" : ""
             }`}
           >
-            {description}
+            <small>{description}</small>
           </p>
         </div>
         <div className="flex gap-2 items-center">
