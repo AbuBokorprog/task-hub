@@ -20,8 +20,8 @@ const Home = () => {
 
   const onSubmit = (data) => {
     const newTask = { id: Date.now(), ...data };
-    setTask([...task, newTask]);
-    localStorage.setItem("task", JSON.stringify([...task, newTask]));
+    setTask([newTask, ...task]);
+    localStorage.setItem("task", JSON.stringify([newTask, ...task]));
     reset();
   };
   return (

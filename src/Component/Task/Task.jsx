@@ -5,13 +5,13 @@ const Task = (props) => {
   console.log(props.task);
   const { id, title, description, priority } = props.task;
   return (
-    <div className="my-10 ">
-      <div className="bg-base-200 py-5 px-4 rounded-xl">
+    <div className="my-4 ">
+      <div className="card shadow-xl bg-base-100 py-5 px-4 rounded-xl">
         <div className="">
-          <form className="form-control">
-            <input type="checkbox" name="" id="" className="checkbox" />
-          </form>
           <div className="flex gap-2">
+            <form className="form-control">
+              <input type="checkbox" name="" id="" className="checkbox" />
+            </form>
             <h2 className="card-title">{title}</h2>
             <div
               className={`badge badge-outline ${
@@ -25,9 +25,9 @@ const Task = (props) => {
               {priority}
             </div>
           </div>
-          <p>{description}</p>
+          <p className="h-28 mt-4">{description}</p>
         </div>
-        <div className="">
+        <div className="flex gap-2 items-center">
           <div className="btn">edit</div>
           <div className="btn">delete</div>
         </div>
