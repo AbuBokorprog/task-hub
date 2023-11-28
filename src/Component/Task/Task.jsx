@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 
 const Task = (props) => {
   const { id, title, description, priority } = props.task;
@@ -22,10 +23,24 @@ const Task = (props) => {
 
   const handleDeleteClick = (id) => {
     const allTask = JSON.parse(localStorage.getItem("task"));
-
-    const filtered = allTask.filter((all) => all.id !== id);
-    localStorage.setItem("task", JSON.stringify(filtered));
-    window.location.reload();
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        const filtered = allTask.filter((all) => all.id !== id);
+        localStorage.setItem("task", JSON.stringify(filtered));
+        window.location.reload();
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
   };
 
   return (

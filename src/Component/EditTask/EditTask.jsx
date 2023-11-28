@@ -1,6 +1,7 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import swal from "sweetalert";
 
 const EditTask = () => {
   const { id } = useParams();
@@ -14,11 +15,19 @@ const EditTask = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    // const newTask = { id: Date.now(), ...data };
-    // setTask([newTask, ...task]);
-    // localStorage.setItem("task", JSON.stringify([newTask, ...task]));
-    // reset();
+    const updatedTasks = existTask.map((task) =>
+      task.id == id ? { ...task, ...data } : task
+    );
+    localStorage.setItem("task", JSON.stringify(updatedTasks));
+    reset();
+    swal({
+      title: "Good job!",
+      text: "Edited Your Task!",
+      icon: "success",
+    });
+    <Navigate to={"/"} replace></Navigate>;
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -31,6 +40,7 @@ const EditTask = () => {
           <input
             {...register("title", { required: true, maxLength: 25 })}
             placeholder="Type title"
+            defaultValue={singleTask?.title}
             className="input input-bordered input-secondary w-full"
           />
           {errors.title?.type === "required" && (
@@ -51,6 +61,7 @@ const EditTask = () => {
           <textarea
             {...register("description", { maxLength: 200 })}
             placeholder="Type here"
+            defaultValue={singleTask?.description}
             className="input input-bordered input-secondary w-full"
           />
           {errors.description?.type === "maxLength" && (
@@ -67,7 +78,9 @@ const EditTask = () => {
             {...register("priority")}
             className="input input-bordered input-secondary w-full"
           >
-            <option defaultValue="Select Priority">Select Priority</option>
+            <option defaultValue={singleTask?.priorities}>
+              {singleTask?.priority}
+            </option>
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>
