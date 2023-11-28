@@ -17,6 +17,15 @@ const Task = (props) => {
     localStorage.setItem(`task-${id}`, JSON.stringify(newCheckedState));
     setIsChecked(newCheckedState);
   };
+
+  const handleDeleteClick = (id) => {
+    const allTask = JSON.parse(localStorage.getItem("task"));
+
+    const filtered = allTask.filter((all) => all.id !== id);
+    localStorage.setItem("task", JSON.stringify(filtered));
+    window.location.reload();
+  };
+
   return (
     <div className={`my-4 ${isChecked ? "checked-task" : ""}`}>
       <div className="card shadow-xl bg-base-100 py-5 px-4 rounded-xl">
@@ -61,7 +70,9 @@ const Task = (props) => {
         </div>
         <div className="flex gap-2 items-center">
           <div className="btn">edit</div>
-          <div className="btn">delete</div>
+          <div className="btn" onClick={() => handleDeleteClick(id)}>
+            delete
+          </div>
         </div>
       </div>
     </div>

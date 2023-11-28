@@ -57,11 +57,15 @@ const Home = () => {
                 <span className="label-text">Description</span>
               </label>
               <textarea
-                {...register("description")}
-                type="text"
+                {...register("description", { maxLength: 100 })}
                 placeholder="Type here"
                 className="input input-bordered input-secondary w-full"
               />
+              {errors.description?.type === "maxLength" && (
+                <p role="alert" className="text-red-500">
+                  <small>Description must be maximum 100 character</small>
+                </p>
+              )}
             </div>
             <div className="form-control w-full my-4">
               <label className="label">
