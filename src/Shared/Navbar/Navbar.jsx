@@ -4,8 +4,14 @@ import { Link } from "react-router-dom";
 import { MdAddTask } from "react-icons/md";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   console.log(user?.photoURL);
+
+  const logoutHandler = () => {
+    logout()
+      .then(() => {})
+      .then((error) => {});
+  };
   return (
     <div>
       <div className="navbar bg-base-200 py-4">
@@ -45,8 +51,8 @@ const Navbar = () => {
                 <li>
                   <a>Settings</a>
                 </li>
-                <button>
-                  <a>Logout</a>
+                <button className="btn" onClick={logoutHandler}>
+                  Logout
                 </button>
               </ul>
             </div>

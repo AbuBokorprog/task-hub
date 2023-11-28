@@ -2,10 +2,19 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 
 const Login = () => {
-  const { google } = useContext(AuthContext);
+  const { google, Github } = useContext(AuthContext);
 
   const GoogleHandler = () => {
     google()
+      .then((result) => {})
+      .catch((error) => {
+        const message = error.message;
+        console.log(message);
+      });
+  };
+
+  const GithubHandler = () => {
+    Github()
       .then((result) => {})
       .catch((error) => {
         const message = error.message;
@@ -32,7 +41,8 @@ const Login = () => {
             />
             <h3 className="text-xl font-medium">Sign Up with Google</h3>
           </div>
-          <div className="flex items-center btn gap-4">
+
+          <div onClick={GithubHandler} className="flex items-center btn gap-4">
             <img
               src="https://cdn-icons-png.flaticon.com/128/2111/2111425.png"
               alt=""

@@ -5,6 +5,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   onAuthStateChanged,
+  GithubAuthProvider,
 } from "firebase/auth";
 import { app } from "../../Firebase/Firebase.config";
 
@@ -12,7 +13,8 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(false);
   const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
+  const GoogleProvider = new GoogleAuthProvider();
+  const GithubProvider = new GithubAuthProvider();
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -25,14 +27,18 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const google = () => {
-    return signInWithPopup(auth, provider);
+    return signInWithPopup(auth, GoogleProvider);
+  };
+
+  const Github = () => {
+    return signInWithPopup(auth, GithubProvider);
   };
 
   const logout = () => {
     return signOut(auth);
   };
 
-  const authInfo = { user, google, logout };
+  const authInfo = { user, google, Github, logout };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
