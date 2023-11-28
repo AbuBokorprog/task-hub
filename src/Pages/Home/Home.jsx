@@ -2,11 +2,20 @@ import React from "react";
 import { FaFilter } from "react-icons/fa";
 import { FaPlusCircle } from "react-icons/fa";
 import Modal from "../../Component/Modal/Modal";
+import { useForm } from "react-hook-form";
 
 const Home = () => {
-  const taskHandler = (e) => {
-    e.preventDefault();
-    console.log("hello");
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    reset();
   };
   return (
     <div className="my-10 px-1 pb-96 lg:pb-72">
@@ -20,7 +29,7 @@ const Home = () => {
           </select>
         </div>
         <Modal title="Add your task" button="Add task">
-          <form onSubmit={taskHandler}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control w-full my-4">
               <label className="label label-text">
                 <span>
@@ -28,16 +37,22 @@ const Home = () => {
                 </span>
               </label>
               <input
-                type="text"
-                placeholder="Type here"
+                {...register("title", { required: true })}
+                placeholder="Type title"
                 className="input input-bordered input-secondary w-full"
               />
+              {errors.title?.type === "required" && (
+                <p role="alert" className="text-red-500">
+                  <small>Title name is required</small>
+                </p>
+              )}
             </div>
             <div className="form-control w-full my-4">
               <label className="label">
                 <span className="label-text">Description</span>
               </label>
               <textarea
+                {...register("description")}
                 type="text"
                 placeholder="Type here"
                 className="input input-bordered input-secondary w-full"
@@ -48,14 +63,13 @@ const Home = () => {
                 <span className="label-text">Priority</span>
               </label>
               <select
-                name=""
-                id=""
+                {...register("priority")}
                 className="input input-bordered input-secondary w-full"
               >
-                <option defaultValue>Select your priority</option>
-                <option value={"Low"}>Low</option>
-                <option value={"Medium"}>Medium</option>
-                <option value={"High"}>High</option>
+                <option defaultValue="Select Priority">Select Priority</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
               </select>
             </div>
 
