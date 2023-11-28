@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Task = (props) => {
   const { id, title, description, priority } = props.task;
@@ -69,15 +70,15 @@ const Task = (props) => {
             <small>{description}</small>
           </p>
         </div>
-        <div className="flex gap-2 items-center">
-          <div className="btn text-red-500">
-            <FiEdit className="" />
-          </div>
+        <div className="flex gap-2 items-center justify-between">
+          <Link to={`/edit/${id}`} className="btn text-red-500">
+            <FiEdit /> Edit
+          </Link>
           <div
             className="btn text-red-500"
             onClick={() => handleDeleteClick(id)}
           >
-            <MdDelete />
+            <MdDelete /> Delete
           </div>
         </div>
       </div>
