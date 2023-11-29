@@ -24,7 +24,7 @@ Task Hub is a task management application that allows users to efficiently organ
 
 ## Demo
 
-![Task Hub Demo](demo.gif)
+![Task Hub Demo]("/Task-Hub.png)
 
 ## Project Structure
 
