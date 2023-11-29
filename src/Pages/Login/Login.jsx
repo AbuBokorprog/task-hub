@@ -31,7 +31,7 @@ const Login = () => {
 
   return (
     <div className="hero min-h-screen">
-      <div className="card py-20 shadow-2xl bg-base-100">
+      <div className="card py-10 lg:py-20 shadow-2xl bg-base-100">
         <div className="px-10">
           <h2 className="text-2xl my-2 text-center font-semibold">
             Sign Up or Log in

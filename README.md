@@ -79,4 +79,5 @@ The project is structured as follows:
 - React Icons
 - SweetAlert
 - react-spinners
+- react-toastify
 - Firebase

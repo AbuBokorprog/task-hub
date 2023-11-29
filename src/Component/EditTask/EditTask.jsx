@@ -29,7 +29,8 @@ const EditTask = () => {
   };
 
   return (
-    <div className="my-10">
+    <div className="my-20">
+      <h2 className="text-center text-2xl font-medium">Edit Task Form</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-control w-full my-2">
           <label className="label label-text">

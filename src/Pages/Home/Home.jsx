@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Modal from "../../Component/Modal/Modal";
 import { useForm } from "react-hook-form";
-import swal from "sweetalert";
+// import swal from "sweetalert";
 import Task from "../Task/Task";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   const existTask = JSON.parse(localStorage.getItem("task")) || [];
@@ -23,10 +25,15 @@ const Home = () => {
     const newTask = { id: Date.now(), ...data };
     setTask([newTask, ...task]);
     localStorage.setItem("task", JSON.stringify([newTask, ...task]));
-    swal({
-      title: "Good job!",
-      text: "You Added Your Task!",
-      icon: "success",
+    toast.success("Task added successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
     });
     reset();
   };
@@ -48,6 +55,7 @@ const Home = () => {
   };
   return (
     <div className="my-10 px-1">
+      <ToastContainer />
       <div className="flex justify-between items-center">
         <h2 className="text-2xl lg:text-3xl font-semibold">My Day</h2>
         <div className="">
@@ -138,7 +146,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-      {existTask.length > 0 && (
+      {existTask.length > 10 && (
         <div className="flex justify-center my-20">
           <button
             onClick={handlePrevPage}
