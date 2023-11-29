@@ -25,7 +25,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/edit/:id",
-        element: <EditTask />,
+        element: (
+          <PrivateRoute>
+            <EditTask />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",

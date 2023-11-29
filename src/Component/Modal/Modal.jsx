@@ -3,7 +3,6 @@ import React from "react";
 const Modal = ({ children, title, button }) => {
   return (
     <div>
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
       <button
         className="btn btn-primary text-white"
         onClick={() => document.getElementById("my_modal_2").showModal()}

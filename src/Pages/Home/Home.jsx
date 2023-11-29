@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "../../Component/Modal/Modal";
 import { useForm } from "react-hook-form";
 import Task from "../../Component/Task/Task";
+import swal from "sweetalert";
 
 const Home = () => {
   const existTask = JSON.parse(localStorage.getItem("task")) || [];
@@ -19,6 +20,11 @@ const Home = () => {
     const newTask = { id: Date.now(), ...data };
     setTask([newTask, ...task]);
     localStorage.setItem("task", JSON.stringify([newTask, ...task]));
+    swal({
+      title: "Good job!",
+      text: "You Added Your Task!",
+      icon: "success",
+    });
     reset();
   };
   const filteredTasks = priorityFilter
