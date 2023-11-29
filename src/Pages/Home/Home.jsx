@@ -1,12 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Modal from "../../Component/Modal/Modal";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert";
 import Task from "../Task/Task";
-import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 
 const Home = () => {
-  const { loader } = useContext(AuthContext);
   const existTask = JSON.parse(localStorage.getItem("task")) || [];
   const [priorityFilter, setPriorityFilter] = useState(null);
   const [task, setTask] = useState(existTask);
@@ -15,7 +13,6 @@ const Home = () => {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm();
@@ -117,7 +114,6 @@ const Home = () => {
                 <option value="High">High</option>
               </select>
             </div>
-
             <div className="my-2">
               <input
                 type="submit"
@@ -138,7 +134,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center my-20">
         <button
           onClick={handlePrevPage}
           disabled={currentPage === 1}

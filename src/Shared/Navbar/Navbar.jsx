@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
+
   const logoutHandler = () => {
     logout()
       .then(() => {})
@@ -12,17 +13,15 @@ const Navbar = () => {
   return (
     <div>
       <div className="navbar bg-base-200 py-4">
-        <div className="flex-1">
+        <div className="flex-1 gap-2">
+          <img
+            className="w-10"
+            src="https://cdn-icons-png.flaticon.com/128/10629/10629607.png"
+            alt=""
+          />
           <Link className=" text-3xl lg:text-4xl font-bold">Task Hub</Link>
         </div>
         <div className="flex-none gap-2">
-          <div className="form-control">
-            <input
-              type="text"
-              placeholder="Search"
-              className="input input-bordered w-24 md:w-auto"
-            />
-          </div>
           {user ? (
             <div className="dropdown dropdown-end">
               <div
