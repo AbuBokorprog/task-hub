@@ -125,8 +125,12 @@ const Home = () => {
         </Modal>
       </div>
       <div className="my-10">
-        {existTask.length > 0 && (
+        {existTask.length > 0 ? (
           <h2 className="text-2xl font-medium">All Task</h2>
+        ) : (
+          <p className="text-center max-h-screen my-52 lg:my-32">
+            You didn't add any task
+          </p>
         )}
         <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-4 mx-auto">
           {currentTasks.map((t) => (
@@ -134,33 +138,35 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <div className="flex justify-center my-20">
-        <button
-          onClick={handlePrevPage}
-          disabled={currentPage === 1}
-          className="btn btn-outline mx-1 px-4 py-2 rounded"
-        >
-          Previous
-        </button>
-        {Array.from({ length: totalPages }, (_, index) => (
+      {existTask.length > 0 && (
+        <div className="flex justify-center my-20">
           <button
-            key={index + 1}
-            onClick={() => setCurrentPage(index + 1)}
-            className={`btn ${
-              currentPage === index + 1 ? "btn-primary" : "btn-base-100"
-            } mx-1 px-4 py-2 rounded`}
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className="btn btn-outline mx-1 px-4 py-2 rounded"
           >
-            {index + 1}
+            Previous
           </button>
-        ))}
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-          className="btn btn-outline mx-1 px-4 py-2 rounded"
-        >
-          Next
-        </button>
-      </div>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index + 1}
+              onClick={() => setCurrentPage(index + 1)}
+              className={`btn ${
+                currentPage === index + 1 ? "btn-primary" : "btn-base-100"
+              } mx-1 px-4 py-2 rounded`}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className="btn btn-outline mx-1 px-4 py-2 rounded"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -62,7 +62,7 @@ const EditTask = () => {
             {...register("description", { maxLength: 200 })}
             placeholder="Type here"
             defaultValue={singleTask?.description}
-            className="input input-bordered input-secondary w-full"
+            className="input input-bordered input-secondary"
           />
           {errors.description?.type === "maxLength" && (
             <p role="alert" className="text-red-500">

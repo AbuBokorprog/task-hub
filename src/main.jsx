@@ -5,9 +5,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthProvider from "./Provider/AuthProvider/AuthProvider.jsx";
 import Home from "./Pages/Home/Home.jsx";
 import Login from "./Pages/Login/Login.jsx";
-import EditTask from "./Pages/EditTask/EditTask.jsx";
 import PrivateRoute from "./Provider/PrivateRoute/PrivateRoute.jsx";
 import Main from "./Layout/Main.jsx";
+import EditTask from "./Component/EditTask/EditTask.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/edit/:id",
+        path: "/editTask/:id",
         element: (
           <PrivateRoute>
             <EditTask />

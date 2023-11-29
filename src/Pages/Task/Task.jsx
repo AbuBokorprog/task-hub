@@ -100,7 +100,7 @@ const Task = (props) => {
               </p>
             </div>
             <div className="flex gap-2 items-center justify-between">
-              <Link to={`/edit/${id}`} className="btn text-red-500">
+              <Link to={`/editTask/${id}`} className="btn text-red-500">
                 <FiEdit /> Edit
               </Link>
               <div

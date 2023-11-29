@@ -31,15 +31,15 @@ const Login = () => {
 
   return (
     <div className="hero min-h-screen">
-      <div className="card py-8 shadow-2xl bg-base-100">
+      <div className="card py-20 shadow-2xl bg-base-100">
         <div className="px-10">
-          <h2 className="text-2xl mb-2 text-center font-semibold">
+          <h2 className="text-2xl my-2 text-center font-semibold">
             Sign Up or Log in
           </h2>
           <hr className="border border-gray-400" />
           <div
             onClick={GoogleHandler}
-            className="flex items-center gap-4 btn my-4"
+            className="flex items-center gap-4 btn my-8"
           >
             <img
               className="w-8"
