@@ -9,21 +9,23 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
   const GoogleHandler = () => {
     google()
-      .then((result) => {})
+      .then((result) => {
+        navigate(from, { replace: true });
+      })
       .catch((error) => {
         const message = error.message;
         console.log(message);
-        navigate(from, { replace: true });
       });
   };
 
   const GithubHandler = () => {
     Github()
-      .then((result) => {})
+      .then((result) => {
+        navigate(from, { replace: true });
+      })
       .catch((error) => {
         const message = error.message;
         console.log(message);
-        navigate(from, { replace: true });
       });
   };
 
