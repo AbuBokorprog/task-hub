@@ -1,5 +1,4 @@
 import React, { createContext, useEffect, useState } from "react";
-export const AuthContext = createContext(null);
 import {
   getAuth,
   signInWithPopup,
@@ -10,13 +9,23 @@ import {
 } from "firebase/auth";
 import { app } from "../../Firebase/Firebase.config";
 
+export const AuthContext = createContext(null);
+
 const AuthProvider = ({ children }) => {
+  const [isLoading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(true);
   const auth = getAuth(app);
   const GoogleProvider = new GoogleAuthProvider();
   const GithubProvider = new GithubAuthProvider();
 
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(delay);
+  }, []);
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setLoader(false);
@@ -39,7 +48,7 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const authInfo = { user, google, Github, logout, loader };
+  const authInfo = { user, google, Github, logout, loader, isLoading };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

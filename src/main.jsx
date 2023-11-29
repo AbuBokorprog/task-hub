@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Main from "./layout/Main.jsx";
 import AuthProvider from "./Provider/AuthProvider/AuthProvider.jsx";
 import Home from "./Pages/Home/Home.jsx";
 import Login from "./Pages/Login/Login.jsx";
-import EditTask from "./Component/EditTask/EditTask.jsx";
+import EditTask from "./Pages/EditTask/EditTask.jsx";
 import PrivateRoute from "./Provider/PrivateRoute/PrivateRoute.jsx";
+import Main from "./Layout/Main.jsx";
 
 const router = createBrowserRouter([
   {

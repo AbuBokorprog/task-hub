@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import Propagate from "../../Component/Spinner/Propagate";
 
 const PrivateRoute = ({ children }) => {
   const { user, loader } = useContext(AuthContext);
@@ -10,9 +11,9 @@ const PrivateRoute = ({ children }) => {
   }
   if (loader) {
     return (
-      <div className="radial-progress text-center" style={{ "--value": 70 }}>
-        70%
-      </div>
+      <>
+        <Propagate />
+      </>
     );
   }
   return <Navigate to="/login" state={{ from: location }} replace></Navigate>;

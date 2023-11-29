@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Modal from "../../Component/Modal/Modal";
 import { useForm } from "react-hook-form";
-import Task from "../../Component/Task/Task";
 import swal from "sweetalert";
+import Task from "../Task/Task";
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 
 const Home = () => {
+  const { loader } = useContext(AuthContext);
   const existTask = JSON.parse(localStorage.getItem("task")) || [];
   const [priorityFilter, setPriorityFilter] = useState(null);
   const [task, setTask] = useState(existTask);
