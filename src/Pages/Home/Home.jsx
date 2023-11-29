@@ -8,6 +8,8 @@ const Home = () => {
   const existTask = JSON.parse(localStorage.getItem("task")) || [];
   const [priorityFilter, setPriorityFilter] = useState(null);
   const [task, setTask] = useState(existTask);
+  const [currentPage, setCurrentPage] = useState(1);
+  const tasksPerPage = 10;
   const {
     register,
     handleSubmit,
@@ -17,6 +19,8 @@ const Home = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    const date = Date.now();
+    console.log(date);
     const newTask = { id: Date.now(), ...data };
     setTask([newTask, ...task]);
     localStorage.setItem("task", JSON.stringify([newTask, ...task]));
@@ -30,8 +34,21 @@ const Home = () => {
   const filteredTasks = priorityFilter
     ? task.filter((t) => t.priority === priorityFilter)
     : task;
+  const indexOfLastTask = currentPage * tasksPerPage;
+  const indexOfFirstTask = indexOfLastTask - tasksPerPage;
+  const currentTasks = filteredTasks.slice(indexOfFirstTask, indexOfLastTask);
+
+  const totalPages = Math.ceil(filteredTasks.length / tasksPerPage);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
   return (
-    <div className="my-10 px-1 pb-96 lg:pb-72">
+    <div className="my-10 px-1">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl lg:text-3xl font-semibold">My Day</h2>
         <div className="">
@@ -109,15 +126,42 @@ const Home = () => {
           </form>
         </Modal>
       </div>
-      <div className="mt-10">
+      <div className="my-10">
         {existTask.length > 0 && (
           <h2 className="text-2xl font-medium">All Task</h2>
         )}
         <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-4 mx-auto">
-          {filteredTasks.map((t) => (
+          {currentTasks.map((t) => (
             <Task key={t.id} task={t}></Task>
           ))}
         </div>
+      </div>
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="btn btn-outline mx-1 px-4 py-2 rounded"
+        >
+          Previous
+        </button>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => setCurrentPage(index + 1)}
+            className={`btn ${
+              currentPage === index + 1 ? "btn-primary" : "btn-base-100"
+            } mx-1 px-4 py-2 rounded`}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="btn btn-outline mx-1 px-4 py-2 rounded"
+        >
+          Next
+        </button>
       </div>
     </div>
   );

@@ -29,9 +29,9 @@ const EditTask = () => {
   };
 
   return (
-    <div>
+    <div className="my-10">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-control w-full my-4">
+        <div className="form-control w-full my-2">
           <label className="label label-text">
             <span>
               Title<span className="text-red-500">*</span>
@@ -54,7 +54,7 @@ const EditTask = () => {
             </p>
           )}
         </div>
-        <div className="form-control w-full my-4">
+        <div className="form-control w-full my-2">
           <label className="label">
             <span className="label-text">Description</span>
           </label>
@@ -70,7 +70,7 @@ const EditTask = () => {
             </p>
           )}
         </div>
-        <div className="form-control w-full my-4">
+        <div className="form-control w-full my-2">
           <label className="label">
             <span className="label-text">Priority</span>
           </label>
@@ -87,7 +87,7 @@ const EditTask = () => {
           </select>
         </div>
 
-        <div className="my-2">
+        <div className="mt-10">
           <input
             type="submit"
             value="Add Task"
