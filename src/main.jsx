@@ -7,7 +7,7 @@ import AuthProvider from "./Provider/AuthProvider/AuthProvider.jsx";
 import Home from "./Pages/Home/Home.jsx";
 import Login from "./Pages/Login/Login.jsx";
 import EditTask from "./Component/EditTask/EditTask.jsx";
-// import PrivateRoute from "./Provider/PrivateRoute/PrivateRoute.jsx";
+import PrivateRoute from "./Provider/PrivateRoute/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +17,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/edit/:id",

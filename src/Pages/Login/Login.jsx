@@ -1,15 +1,19 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { google, Github } = useContext(AuthContext);
-
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const GoogleHandler = () => {
     google()
       .then((result) => {})
       .catch((error) => {
         const message = error.message;
         console.log(message);
+        navigate(from, { replace: true });
       });
   };
 
@@ -19,6 +23,7 @@ const Login = () => {
       .catch((error) => {
         const message = error.message;
         console.log(message);
+        navigate(from, { replace: true });
       });
   };
 

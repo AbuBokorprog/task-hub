@@ -1,12 +1,9 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
-import { MdAddTask } from "react-icons/md";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
-  console.log(user?.photoURL);
-
   const logoutHandler = () => {
     logout()
       .then(() => {})
@@ -42,15 +39,6 @@ const Navbar = () => {
                 </div>
               </div>
               <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                <li>
-                  <a className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
                 <button className="btn" onClick={logoutHandler}>
                   Logout
                 </button>

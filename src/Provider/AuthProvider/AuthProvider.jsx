@@ -6,12 +6,13 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   GithubAuthProvider,
+  signOut,
 } from "firebase/auth";
 import { app } from "../../Firebase/Firebase.config";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState(true);
   const auth = getAuth(app);
   const GoogleProvider = new GoogleAuthProvider();
   const GithubProvider = new GithubAuthProvider();
@@ -38,7 +39,7 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const authInfo = { user, google, Github, logout };
+  const authInfo = { user, google, Github, logout, loader };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
