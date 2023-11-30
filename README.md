@@ -72,7 +72,7 @@ The project is structured as follows:
 
 ## Technologies Used
 
-- React
+- Vite
 - React Router DOM
 - React-hook-form
 - DaisyUi (Tailwind CSS components)

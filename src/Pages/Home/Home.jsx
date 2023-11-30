@@ -20,8 +20,6 @@ const Home = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    const date = Date.now();
-    console.log(date);
     const newTask = { id: Date.now(), ...data };
     setTask([newTask, ...task]);
     localStorage.setItem("task", JSON.stringify([newTask, ...task]));

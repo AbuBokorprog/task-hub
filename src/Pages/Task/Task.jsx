@@ -100,11 +100,11 @@ const Task = (props) => {
               </p>
             </div>
             <div className="flex gap-2 items-center justify-between">
-              <Link to={`/editTask/${id}`} className="btn text-red-500">
+              <Link to={`/editTask/${id}`} className="btn text-red-600">
                 <FiEdit /> Edit
               </Link>
               <div
-                className="btn text-red-500"
+                className="btn text-red-600"
                 onClick={() => handleDeleteClick(id)}
               >
                 <MdDelete /> Delete

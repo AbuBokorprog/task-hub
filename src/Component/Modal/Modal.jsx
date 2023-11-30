@@ -4,7 +4,7 @@ const Modal = ({ children, title, button }) => {
   return (
     <div>
       <button
-        className="btn btn-primary text-white"
+        className="btn btn-secondary text-white"
         onClick={() => document.getElementById("my_modal_2").showModal()}
       >
         {button}
